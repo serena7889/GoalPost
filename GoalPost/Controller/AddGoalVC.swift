@@ -69,7 +69,6 @@ class AddGoalVC: UIViewController, UITextViewDelegate {
         goal.goalDescription = goalDescTextView.text
         do {
             try moc.save()
-            debugPrint("Successfully saved data.")
             completion(true)
         } catch {
             debugPrint("Could not save: \(error.localizedDescription)")

@@ -43,7 +43,6 @@
                                         </constraints>
                                         <state key="normal" image="addGoal"/>
                                         <connections>
-                                            <action selector="addGoalBtnPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LfY-Dj-H32"/>
                                             <segue destination="5wg-iV-7sl" kind="show" id="gvf-Bd-dOi"/>
                                         </connections>
                                     </button>
@@ -181,9 +180,9 @@
         <!--Add GoalVC-->
         <scene sceneID="WHD-Dm-wj3">
             <objects>
-                <viewController id="5wg-iV-7sl" customClass="AddGoalVC" customModule="GoalPost" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="5wg-iV-7sl" customClass="AddGoalVC" customModule="GoalPost" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="N09-ZX-5gj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t8W-WT-fvb">
@@ -268,7 +267,7 @@
                                 </constraints>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hcq-ik-VpC">
-                                <rect key="frame" x="20" y="646" width="374" height="50"/>
+                                <rect key="frame" x="20" y="666" width="374" height="50"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UDV-ja-aPK"/>
@@ -334,7 +333,7 @@
                             <constraint firstItem="cXb-Y1-qTP" firstAttribute="leading" secondItem="CvZ-6a-sjl" secondAttribute="leading" constant="20" id="7Tb-r4-3rN"/>
                             <constraint firstItem="0yK-gX-E7u" firstAttribute="leading" secondItem="CvZ-6a-sjl" secondAttribute="leading" constant="20" id="93c-r2-Tol"/>
                             <constraint firstItem="t8W-WT-fvb" firstAttribute="leading" secondItem="CvZ-6a-sjl" secondAttribute="leading" id="A7x-Yb-BAS"/>
-                            <constraint firstItem="t8W-WT-fvb" firstAttribute="top" secondItem="CvZ-6a-sjl" secondAttribute="top" id="DSV-Of-MZn"/>
+                            <constraint firstItem="t8W-WT-fvb" firstAttribute="top" secondItem="N09-ZX-5gj" secondAttribute="top" id="DSV-Of-MZn"/>
                             <constraint firstItem="CvZ-6a-sjl" firstAttribute="trailing" secondItem="cXb-Y1-qTP" secondAttribute="trailing" constant="20" id="H3H-KD-vNk"/>
                             <constraint firstItem="cXb-Y1-qTP" firstAttribute="top" secondItem="t8W-WT-fvb" secondAttribute="bottom" constant="20" id="Hau-qg-KSD"/>
                             <constraint firstItem="XKw-XR-K3I" firstAttribute="top" secondItem="dQs-t2-OWW" secondAttribute="bottom" constant="20" id="O5i-bV-hnn"/>

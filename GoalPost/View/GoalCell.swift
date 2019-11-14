@@ -15,7 +15,7 @@ class GoalCell: UITableViewCell {
     @IBOutlet weak var goalCountLbl: UILabel!
     
     func configureCell(goal: Goal) {
-        goalDescriptionLbl.text = goal.description
+        goalDescriptionLbl.text = goal.goalDescription
         goalTypeLbl.text = goal.goalType
         goalCountLbl.text = String(describing: goal.goalCount)
     }

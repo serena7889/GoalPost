@@ -25,18 +25,15 @@ class GoalsVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         fetch { (complete) in
-            print(goals.count)
-            print(goals)
             if complete {
                 if goals.count > 0 {
                     tableView.isHidden = false
+                } else {
+                    tableView.isHidden = true
                 }
             }
         }
-    }
-    
-    @IBAction func addGoalBtnPressed(_ sender: Any) {
-        print("add pressed")
+        tableView.reloadData()
     }
     
     func fetch(completion: (_ complete: Bool) -> ()) {
@@ -44,7 +41,6 @@ class GoalsVC: UIViewController {
         let fetchRequest = NSFetchRequest<Goal>(entityName: "Goal")
         do {
             goals = try moc.fetch(fetchRequest)
-            debugPrint("Successfully fetched data")
             completion(true)
         } catch {
             debugPrint("Cannot fetch data: \(error.localizedDescription)")
