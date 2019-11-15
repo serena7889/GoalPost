@@ -39,6 +39,7 @@ class GoalsVC: UIViewController {
             }
         }
     }
+    
 }
 
 
@@ -65,9 +66,21 @@ extension GoalsVC {
         }
     }
     
-//    func incrementGoal(atIndexPath indexPath: IndexPath) {
-//        let goal = goals[indexPath.row]
-//    }
+    func incrementGoal(atIndexPath indexPath: IndexPath) {
+        guard let moc = appDelegate?.persistentContainer.viewContext else { return }
+        let goal = goals[indexPath.row]
+        if goal.goalCount < goal.goalTarget {
+            goal.goalCount += 1
+        } else {
+            return
+        }
+        do {
+            try moc.save()
+        } catch {
+            debugPrint("Cannot increment goal: \(error.localizedDescription)")
+        }
+    }
+
     
 }
 
@@ -101,20 +114,23 @@ extension GoalsVC: UITableViewDelegate, UITableViewDataSource {
         return UITableViewCell.EditingStyle.none
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "DELETE") { (rowAction, indexPath) in
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "DELETE") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
             self.deleteGoal(atIndexPath: indexPath)
             self.fetchCoreDataObjects()
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)
         
-//        let incrementAction = UITableViewRowAction(style: .normal, title: "+1") { (rowAction, indexPath) in
-//            self.incrementGoal(atIndexPath: indexPath)
-//            self.fetchCoreDataObjects()
-//            tableView.reloadData()
-//        }
-        return [deleteAction]
+        let incrementAction = UIContextualAction(style: .normal, title: "+1") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+            self.incrementGoal(atIndexPath: indexPath)
+            tableView.reloadData()
+        }
+        incrementAction.backgroundColor = #colorLiteral(red: 0.2039215686, green: 0.7803921569, blue: 0.3490196078, alpha: 1)
+        
+        let swipeActionsConfig = UISwipeActionsConfiguration(actions: [deleteAction, incrementAction])
+        return swipeActionsConfig
     }
     
 }
